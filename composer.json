@@ -59,7 +59,7 @@
         }
     },
     "scripts": {
-        "post-create-project-cmd": [
+        "post-install-cmd": [
             "npm install",
             "npm run build"
         ],
