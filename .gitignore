@@ -25,9 +25,6 @@ node_modules/
 .env
 public/.env
 
-env.php
-config/env.php
-
 #!public/assets/
 #public/assets/*
 #!public/assets/.htaccess
