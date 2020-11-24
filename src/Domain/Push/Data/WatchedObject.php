@@ -1,15 +1,11 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 namespace App\Domain\Push\Data;
 
 /**
- * Description of WachedObject
+ * WachedObject is the objectt to be wathed and it's metrics/properties to be pushed to databox service
  *
  * @author Slavko
  */

@@ -20,6 +20,12 @@ use App\Factory\QueryFactory;
 use App\Repository\DataTableRepository;
 use App\Repository\TableName;
 
+/**
+ * 
+ * Handels the communication with external services and database. 
+ * 
+ * 
+ */
 class PushProviderRepository implements RepositoryInterface{
     /**
      * @var QueryFactory
@@ -36,6 +42,11 @@ class PushProviderRepository implements RepositoryInterface{
         $this->dataTable = $dataTableRepository;
     }
     
+    /**
+     * Gets the first object for the $user  that it can find to observe the metrics. This method returns the object for wich the metrics will be pushed to databox service
+     * @param UserAuthData $user
+     * @return WatchedObject
+     */
     public function GetObject(UserAuthData $user) : WatchedObject{
         
         switch ($user->origin) {
@@ -56,6 +67,14 @@ class PushProviderRepository implements RepositoryInterface{
         }
     } 
     
+    /**
+     * 
+     *  Get's the data for a specific object
+     * 
+     * @param UserAuthData $user
+     * @param WatchedObject $object
+     * @return DataboxPushData
+     */
     public function GetObjectMetrics(UserAuthData $user, WatchedObject $object) : DataboxPushData{
         $client = new Google();
         $client->setAccessToken($user->access_token);
@@ -105,6 +124,12 @@ class PushProviderRepository implements RepositoryInterface{
         return new DataboxPushData('', $mtrcs);
     }
 
+    /**
+     * Pushes the metrics data  to databox service 
+     * @param UserAuthData $user
+     * @param DataboxPushData $data
+     * @return type
+     */
     public function ExecutePush(UserAuthData $user, DataboxPushData $data){
                 //push to client
         $client = new DataboxClient($data->getPushkey());
@@ -130,6 +155,13 @@ class PushProviderRepository implements RepositoryInterface{
         return $this->InsertPush($user, $data, $push);
     }
     
+    /**
+     * Insert's the metrics data to a local database
+     * @param UserAuthData $user
+     * @param DataboxPushData $data
+     * @param array $row
+     * @return int
+     */
     public function InsertPush(UserAuthData $user, DataboxPushData $data, array $row) : int{
          $row['date'] = Chronos::now()->toDateTimeString();
          return (int)$this->queryFactory->newInsert(TableName::PUSH, $row)->execute()->lastInsertId();
@@ -138,7 +170,7 @@ class PushProviderRepository implements RepositoryInterface{
     /**
      * Load data table entries.
      *
-     * @param array $params The user
+     * @param array $params The push
      *
      * @return array The table data
      */

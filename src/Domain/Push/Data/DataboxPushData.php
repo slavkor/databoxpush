@@ -1,17 +1,15 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 namespace App\Domain\Push\Data;
 
 use App\Domain\Model\Metric;
+
+
 /**
- * Description of BasePush
+ * DataboxPushData represents a unit of data to be pushed to databox service
  *
- * @author Slavko
+ * @author Slavko 
  */
 class DataboxPushData implements \JsonSerializable {
     
