@@ -58,14 +58,14 @@ final class LoginSubmitAction
         $password = (string)($data['password'] ?? '');
 
         $user = $this->auth->authenticate($username, $password);
-
+        
         $flash = $this->session->getFlashBag();
         $flash->clear();
 
         if ($user) {
             $this->startUserSession($user);
             $flash->set('success', __('Login successfully'));
-            $url = 'user-list';
+            $url = 'push-view';
         } else {
             $flash->set('error', __('Login failed!'));
             $url = 'login';

@@ -56,7 +56,9 @@ final class UserAuth
         $user->id = (int)$userRow['id'];
         $user->email = (string)$userRow['email'];
         $user->locale = (string)$userRow['locale'];
-
+        $user->access_token = (string)$userRow['access_token'];
+        $user->client_id = (string)$userRow['client_id'];
+        $user->origin = (string)$userRow['origin'];
         return $user;
     }
 

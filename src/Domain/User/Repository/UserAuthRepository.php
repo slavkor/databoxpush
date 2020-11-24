@@ -40,6 +40,9 @@ final class UserAuthRepository
             'password',
             'email',
             'locale',
+            'access_token',
+            'client_id', 
+            'origin'
         ]);
 
         $query->andWhere([
@@ -47,8 +50,8 @@ final class UserAuthRepository
             'enabled' => 1,
         ]);
 
-        $row = $query->execute()->fetch('assoc');
 
+        $row = $query->execute()->fetch('assoc');
         return $row ?: [];
     }
 }

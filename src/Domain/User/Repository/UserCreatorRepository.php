@@ -40,4 +40,11 @@ class UserCreatorRepository implements RepositoryInterface
 
         return (int)$this->queryFactory->newInsert(TableName::USERS, $row)->execute()->lastInsertId();
     }
+    
+    public function updateUser(array $row): int
+    {
+        $row['created_at'] = Chronos::now()->toDateTimeString();
+
+        return (int)$this->queryFactory->newUpdate(TableName::USERS, $row)->execute()->lastInsertId();
+    }
 }

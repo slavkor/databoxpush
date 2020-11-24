@@ -15,4 +15,19 @@ class UserAuthData
 
     /** @var string */
     public $locale;
+    
+    /** @var string */
+    public $access_token;
+    
+    /** @var string */
+    public $client_id;
+    
+    /** @var string */
+    public $origin;
+    
+    
+    
+    
+    
+    
 }

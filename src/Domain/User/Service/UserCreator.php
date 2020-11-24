@@ -104,9 +104,16 @@ final class UserCreator
     {
         return [
             'username' => $form['username'],
+            'password' => $form['password'],
+            'access_token' => $form['access_token'],
+            'client_id' => $form['client_id'],
+            'origin' => $form['origin'],
             'email' => $form['email'],
             'first_name' => $form['first_name'] ?? null,
             'last_name' => $form['last_name'] ?? null,
+            'locale' => $form['locale'] ?? null,
+            'enabled' => $form['enabled'] ?? null,
+            'created_at' => $form['created_at'] ?? null,
         ];
     }
 }

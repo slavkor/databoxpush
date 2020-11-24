@@ -47,6 +47,7 @@ final class UserCreateAction
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
+
         // Collect input from the HTTP request
         $formData = (array)$request->getParsedBody();
 

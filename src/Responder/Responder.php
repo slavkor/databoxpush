@@ -91,10 +91,22 @@ final class Responder
         if (!filter_var($destination, FILTER_VALIDATE_URL)) {
             $destination = $this->urlGenerator->fullUrlFor($destination, $data, $queryParams);
         }
-
         return $response->withStatus(302)->withHeader('Location', $destination);
     }
 
+    
+      public function redirecturltojson(
+        ResponseInterface $response,
+        string $destination,
+        array $data = [],
+        array $queryParams = []
+    ): ResponseInterface {
+        if (!filter_var($destination, FILTER_VALIDATE_URL)) {
+            $destination = $this->urlGenerator->fullUrlFor($destination, $data, $queryParams);
+        }
+        return $this->json($response, ['redirect' => $destination]);
+        
+    }
     /**
      * Write JSON to the response body.
      *
@@ -116,7 +128,6 @@ final class Responder
     ): ResponseInterface {
         $response = $response->withHeader('Content-Type', 'application/json');
         $response->getBody()->write((string)json_encode($data, JSON_THROW_ON_ERROR | $options));
-
         return $response;
     }
 }

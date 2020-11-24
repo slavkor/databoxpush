@@ -6,6 +6,7 @@ use App\Responder\Responder;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Google\Client as Google;
 
 /**
  * Action.
@@ -44,6 +45,16 @@ final class LogoutAction
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
+        
+        /*
+        $user = $this->session->get('user');
+        if($user){
+            $google = new Google(['client_id' => $user->client_id]);
+            $revoke = $google->revokeToken($user->access_token);
+            
+        }
+        */
+        
         // Logout user
         $this->session->invalidate();
 

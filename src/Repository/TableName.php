@@ -8,4 +8,5 @@ namespace App\Repository;
 final class TableName
 {
     public const USERS = 'users';
+    public const PUSH = 'push';
 }
