@@ -1,3 +1,4 @@
+Koraki za zagon:
 
 1. composer install
 2. npm install
